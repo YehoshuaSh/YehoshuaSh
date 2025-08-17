@@ -144,7 +144,7 @@ ModelPlugin = DatabaseLogger; ReportFormat = JUnitXML; FlushInterval=5s
 ---
 
 ## Contact & Links
-- **GitHub:** YehoshuaSh 
+- **GitHub:** [YehoshuaSh ](https://github.com/YehoshuaSh)
 - **LinkedIn:** [Yehoshua Shamir  ](https://www.linkedin.com/in/yehoshua-shamir-69881417?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3B7J%2B%2FMgj8QxaDdK338yDV%2FA%3D%3D)
 - **Email:** josh839@gmail.com
 
