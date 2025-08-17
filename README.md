@@ -51,3 +51,101 @@ Seasoned engineer with an end‑to‑end mindset: requirements → architecture 
 - **C# Operator Console** — WPF app for station control, calibration, and diagnostics with role‑based access & telemetry.  
   _Impact:_ decreased MTTR and improved traceability in production lines.
 
+---
+
+## Tech Stack Deep Dive
+**Languages:** Python, C, C#  
+**Test & QA:** pytest, unittest, NUnit/xUnit, coverage, TestStand sequences & process models  
+**Build & CI:** GitHub Actions, Docker, Make/CMake, MSBuild, NuGet, Poetry  
+**Packaging:** PyPI wheels, internal feeds, semver, changelogs  
+**Observability:** structured logs, metrics, traces; log aggregation & dashboards  
+**Data/IO:** binary protocols, serial/TCP, file formats (CSV/Parquet/HDF5), streaming  
+
+---
+
+## Code Snippets (Representative)
+
+<details>
+<summary><strong>Python · CLI harness around pytest</strong></summary>
+
+```python
+# tools/test_harness.py
+import subprocess, sys
+
+if __name__ == "__main__":
+    cmd = [sys.executable, "-m", "pytest", "-q", "--maxfail=1", "--disable-warnings"]
+    sys.exit(subprocess.call(cmd))
+```
+</details>
+
+<details>
+<summary><strong>C · robust read loop</strong></summary>
+
+```c
+// io/read_loop.c
+#include <stdio.h>
+#include <errno.h>
+size_t robust_read(FILE* f, void* buf, size_t n) {
+    size_t total = 0; int retries = 3;
+    while (total < n && retries--) {
+        size_t r = fread((char*)buf + total, 1, n - total, f);
+        if (r == 0 && ferror(f)) clearerr(f); // retry transient
+        total += r;
+    }
+    return total;
+}
+```
+</details>
+
+<details>
+<summary><strong>C# · P/Invoke boundary</strong></summary>
+
+```csharp
+// Interop/Native.cs
+using System;
+using System.Runtime.InteropServices;
+
+internal static class Native {
+    [DllImport("device.dll", CallingConvention = CallingConvention.Cdecl)]
+    internal static extern int Capture(IntPtr buffer, int length);
+}
+```
+</details>
+
+<details>
+<summary><strong>TestStand · result processing concept</strong></summary>
+
+```ini
+; ResultProcessing.cfg (concept)
+[Logging]
+ModelPlugin = DatabaseLogger; ReportFormat = JUnitXML; FlushInterval=5s
+```
+</details>
+
+---
+
+## Operating Principles
+- **Production first:** code and tests shaped for real stations and real users.
+- **Repeatability:** deterministic builds, seeded randomness, pinned deps.
+- **Observability by default:** logs/metrics/traces from day one.
+- **Documentation as a deliverable:** READMEs, ADRs, and diagrams ship with code.
+
+---
+
+## Metrics That Matter
+- Test cycle time ↓, coverage ↑, flake rate ↓, MTTR ↓, deployment lead time ↓.  
+- Track with dashboards wired to CI and station telemetry.
+
+---
+
+## Certifications & Tools (sample)
+- NI TestStand (version‑specific) • ISTQB (if applicable) • Microsoft/.NET • Docker • Git
+
+---
+
+## Contact & Links
+- **GitHub:** YehoshuaSh 
+- **LinkedIn:** [<your‑profile>  ](https://www.linkedin.com/in/yehoshua-shamir-69881417?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3B7J%2B%2FMgj8QxaDdK338yDV%2FA%3D%3D)
+- **Email:** josh839@gmail.com
+
+---
